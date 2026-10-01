@@ -50,6 +50,20 @@ class _MovieListingState extends State<MovieListing> {
         ),
               ],
       ),
+
+      const SizedBox(height:20),
+ElevatedButton(
+  onPressed: (){
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text("Selected $selectedTickets ticket(s)"),
+      ),
+    );
+  },
+  child: const Text("Confirm Booking"),
+),
+
        ],
   ),
       ),
