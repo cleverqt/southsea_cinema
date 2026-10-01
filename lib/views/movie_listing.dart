@@ -22,6 +22,10 @@ class MovieListing extends StatelessWidget {
       Text("Southsea Cinema Room"),
       Text("Thursday 22 Oct 2026, 18:00 - ends at 20:12"),
       Text("Ne Zha faces new challenges and fights to protect his world and loved ones."),
+      const SizedBox(height:30),
+      Row(
+        children: const [
+          Text("Select Quantities (Up to 5 in total)"),
     ],
   ),
 ),
