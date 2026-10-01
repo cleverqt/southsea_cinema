@@ -15,7 +15,18 @@ class MovieListing extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: const SizedBox.shrink(),
+      body: Container(
+  child: Column(
+    children: const [
+      Text("NE ZHA 2 (2025) (12A)"),
+      Text("Southsea Cinema Room"),
+      Text("Thursday 22 Oct 2026, 18:00 - ends at 20:12"),
+      Text("Ne Zha faces new challenges and fights to protect his world and loved ones."),
+    ],
+  ),
+),
+
+      
     );
   }
 }
