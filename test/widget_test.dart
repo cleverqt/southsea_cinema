@@ -19,4 +19,15 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('NE ZHA 2'), findsOneWidget);
   });
+
+  testWidgets('Add to order button shows feedback',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const SouthseaCinemaApp());
+    await tester.tap(find.text('Book').first);
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Add to order'));
+    await tester.pump();
+    expect(find.text('Added to order'), findsOneWidget);
+  });
 }
