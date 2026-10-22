@@ -23,4 +23,13 @@ class MovieRepository {
       ),
     ];
   }
+
+  Movie? getMovieById(String id) {
+    final list = getMovies();
+    try {
+      return list.firstWhere((movie) => movie.id == id);
+    } catch (e) {
+      return null;
+    }
+  }
 }
