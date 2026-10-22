@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:southsea_cinema/constants.dart';
+import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
 class MovieListing extends StatefulWidget {
@@ -10,62 +10,43 @@ class MovieListing extends StatefulWidget {
 }
 
 class _MovieListingState extends State<MovieListing> {
-  int? selectedTickets = 1;
+  int selectedTickets = 1;
 
   @override
   Widget build(BuildContext context) {
+    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle, style: cinemaHeaderStyle),
-        backgroundColor: cinemaSurface,
-        iconTheme: const IconThemeData(color: cinemaBrand),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: Text(movie.title)),
       drawer: const NavDrawer(),
-      body: Container(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text("NE ZHA 2 (2025) (12A)"),
-            const Text("Southsea Cinema Room"),
-            const Text("Thursday 22 Oct 2026, 18:00 - ends at 20:12"),
-            const Text("Ne Zha faces new challenges and fights to protect his world and loved ones."),
-            const SizedBox(height:30),
-            Row(
-              children: [
-                const Text("Select Quantities (Up to 5 in total):"),
-                DropdownButton<int>(
-                  value: selectedTickets,
-                  items: const [
-                    DropdownMenuItem(value:1, child: Text("1")),
-                    DropdownMenuItem(value:2, child: Text("2")),
-                    DropdownMenuItem(value:3, child: Text("3")),
-                    DropdownMenuItem(value:4, child: Text("4")),
-                    DropdownMenuItem(value:5, child: Text("5")),
-                  ],
-                  onChanged: (int? newValue){
-                    setState((){
-                      selectedTickets = newValue;
-        });
-             },
-        ),
+            Text(movie.title),
+            Image.asset(movie.posterImagePath, height: 150),
+            Text(movie.synopsis),
+            DropdownButton<int>(
+              value: selectedTickets,
+              items: const [
+                DropdownMenuItem(value: 1, child: Text("1")),
+                DropdownMenuItem(value: 2, child: Text("2")),
+                DropdownMenuItem(value: 3, child: Text("3")),
               ],
-      ),
-
-      const SizedBox(height:20),
-ElevatedButton(
-  onPressed: (){
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text("Selected $selectedTickets ticket(s)"),
-      ),
-    );
-  },
-  child: const Text("Confirm Booking"),
-),
-
-       ],
-  ),
+              onChanged: (val) {
+                setState(() {
+                  if (val != null) selectedTickets = val;
+                });
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("$selectedTickets ticket(s) added")));
+              },
+              child: const Text("Add to order"),
+            )
+          ],
+        ),
       ),
     );
   }
