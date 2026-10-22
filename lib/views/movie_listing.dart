@@ -24,6 +24,7 @@ class _MovieListingState extends State<MovieListing> {
           children: [
             Text(movie.title),
             Image.asset(movie.posterImagePath, height: 150),
+            Text("Price: ${movie.formattedPrice}"),
             Text(movie.synopsis),
             DropdownButton<int>(
               value: selectedTickets,
