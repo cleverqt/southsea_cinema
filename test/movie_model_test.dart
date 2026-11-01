@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/models/movie.dart';
-
 void main() {
   group('Movie model tests', () {
     test('constructor correctly assigns all properties', () {
@@ -17,7 +16,6 @@ void main() {
       expect(movie.title, "NE ZHA 2");
       expect(movie.ticketPrice, 6.00);
     });
-
     test('formattedPrice shows two decimals for whole pound', () {
       final movie = Movie(
         id: "m1",
@@ -30,7 +28,6 @@ void main() {
       );
       expect(movie.formattedPrice, "£6.00");
     });
-
     test('formattedPrice works with pence value', () {
       final movie = Movie(
         id: "m3",
