@@ -14,7 +14,15 @@ class _MovieListingState extends State<MovieListing> {
 
   @override
   Widget build(BuildContext context) {
-    final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args is! Movie) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pop(context);
+      });
+      return const SizedBox();
+    }
+    final Movie movie = args;
+
     return Scaffold(
       appBar: AppBar(title: Text(movie.title)),
       drawer: const NavDrawer(),
@@ -45,7 +53,7 @@ class _MovieListingState extends State<MovieListing> {
                     content: Text("$selectedTickets ticket(s) added")));
               },
               child: const Text("Add to order"),
-            )
+            ),
           ],
         ),
       ),
