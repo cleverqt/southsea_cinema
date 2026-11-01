@@ -21,6 +21,16 @@ class MovieRepository {
         ticketPrice: 6.00,
         posterImagePath: "images/xiyangyang.jpg",
       ),
+      Movie(
+        id: "m3",
+        title: "Stranger Things",
+        synopsis:
+            "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
+        ageRating: "12",
+        screeningTime: "Friday 17 Oct 2026 19:00",
+        ticketPrice: 9.00,
+        posterImagePath: "images/Stranger Things.jpg",
+      )
     ];
   }
 
